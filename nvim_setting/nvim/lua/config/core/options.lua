@@ -34,6 +34,8 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical windown default to the right
 opt.splitbelow = true -- split horizontal window default to the bottom
 
+opt.showtabline = 1
+
 --[=[
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = 'utf-8'

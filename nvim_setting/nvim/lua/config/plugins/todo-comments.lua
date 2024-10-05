@@ -1,0 +1,31 @@
+return {
+  --[=[
+  this plugin is used to provide better todo-comments
+  usage: we can type todo/bug/hack followed by a colon, this plugin will emphasize it:
+
+  -- TODO:
+  -- HACK:
+  -- BUG:
+
+  --]=]
+
+  "folke/todo-comments.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    local todo_comments = require("todo-comments")
+
+    -- set keymaps
+    local keymap = vim.keymap -- for conciseness
+
+    keymap.set("n", "]t", function()
+      todo_comments.jump_next()
+    end, { desc = "Next todo comment" })
+
+    keymap.set("n", "[t", function()
+      todo_comments.jump_prev()
+    end, { desc = "Previous todo comment" })
+
+    todo_comments.setup()
+  end, 
+}
