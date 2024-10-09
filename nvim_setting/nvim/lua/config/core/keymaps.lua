@@ -32,6 +32,9 @@ keymap.set("n", "<leader>tn", "gt", { desc = "Goto next tab" })
 keymap.set("n", "<leader>tp", "gT", { desc = "Goto previous tab" })
 keymap.set("n", "<leader>tb", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+keymap.set("n", "<leader>]]", "<C-]>", { desc = "Jump to next tags" })
+keymap.set("n", "<leader>[[", "<C-O>", { desc = "Jump to prev tags" })
+
 -- plugins keymaps
 
 -- NvimTree
