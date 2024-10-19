@@ -33,8 +33,8 @@ keymap.set("n", "<leader>tp", "gT", { desc = "Goto previous tab" })
 keymap.set("n", "<leader>tb", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 keymap.set("n", "<leader>jd", "<C-]>", { desc = "Jump to tags" })
-keymap.set("n", "<leader>]]", "<C-I>", { desc = "Jump to next tags" })
-keymap.set("n", "<leader>[[", "<C-O>", { desc = "Jump to prev tags" })
+keymap.set("n", "]]", "<C-I>", { desc = "Jump to next tags" })
+keymap.set("n", "[[", "<C-O>", { desc = "Jump to prev tags" })
 
 -- plugins keymaps
 
