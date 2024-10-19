@@ -18,6 +18,7 @@ return {
     telescope.setup({
       defaults = {
         path_display = { "absolute" },
+        vimgrep_arguements = { "fdfind", "--type", "f", "--hidden", "--follow" },
         mappings = {
           -- insert mode key mapping
           i = {
@@ -25,6 +26,12 @@ return {
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
           },
+        },
+      },
+      picker = {
+        find_files = {
+          hidden = true,
+          find_command = { "fdfind", "--type", "f", "--hidden", "--follow" }
         },
       },
     })

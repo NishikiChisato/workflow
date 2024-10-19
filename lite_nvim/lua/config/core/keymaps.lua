@@ -32,7 +32,7 @@ keymap.set("n", "<leader>tn", "gt", { desc = "Goto next tab" })
 keymap.set("n", "<leader>tp", "gT", { desc = "Goto previous tab" })
 keymap.set("n", "<leader>tb", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
-keymap.set("n", "<leader>j", "<C-]>", { desc = "Jump to tags" })
+keymap.set("n", "<leader>jd", "<C-]>", { desc = "Jump to tags" })
 keymap.set("n", "<leader>]]", "<C-I>", { desc = "Jump to next tags" })
 keymap.set("n", "<leader>[[", "<C-O>", { desc = "Jump to prev tags" })
 
@@ -50,7 +50,7 @@ keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Fuzzy f
 keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Find string in cwd" })
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
-keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todo comments" })
+keymap.set("n", "<leader>ft", "<cmd>Telescope tags<CR>", { desc = "Find tags" })
 
 -- auto-session for worksapce save and restore
 keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save current session(workspace)" })
