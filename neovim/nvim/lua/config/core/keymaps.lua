@@ -11,6 +11,7 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
+-- splits
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make split equal size" })
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split winfow horizontally" })
@@ -26,12 +27,26 @@ keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Go right" })
 keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Go down" })
 keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Go up" })
 
+-- tabs
 keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close current tab" })
 keymap.set("n", "<leader>tn", "gt", { desc = "Goto next tab" })
 keymap.set("n", "<leader>tp", "gT", { desc = "Goto previous tab" })
 keymap.set("n", "<leader>tb", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+-- terminal
+function OpenVerticalTabWithTerminal()
+    vim.cmd("vsplit")
+    vim.cmd("terminal")
+end
+keymap.set("n", "<leader>tc", ":lua OpenVerticalTabWithTerminal()<CR>", { desc = "Open terminal in current tab" })
+keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal" })
+
+keymap.set("n", "<leader>jd", "<C-]>", { desc = "Jump to tags" })
+keymap.set("n", "]]", "<C-I>", { desc = "Jump to next tags" })
+keymap.set("n", "[[", "<C-O>", { desc = "Jump to prev tags" })
+
+-- tags
 keymap.set("n", "<leader>jd", "<C-]>", { desc = "Jump to tags" })
 keymap.set("n", "]]", "<C-I>", { desc = "Jump to next tags" })
 keymap.set("n", "[[", "<C-O>", { desc = "Jump to prev tags" })
