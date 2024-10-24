@@ -41,6 +41,7 @@ function OpenVerticalTabWithTerminal()
 end
 keymap.set("n", "<leader>tc", ":lua OpenVerticalTabWithTerminal()<CR>", { desc = "Open terminal in current tab" })
 keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal" })
+keymap.set("t", "<C-j><C-k>", "<C-\\><C-n>", { desc = "Exit terminal" })
 
 keymap.set("n", "<leader>jd", "<C-]>", { desc = "Jump to tags" })
 keymap.set("n", "]]", "<C-I>", { desc = "Jump to next tags" })
