@@ -52,6 +52,10 @@ keymap.set("n", "<leader>jd", "<C-]>", { desc = "Jump to tags" })
 keymap.set("n", "]]", "<C-I>", { desc = "Jump to next tags" })
 keymap.set("n", "[[", "<C-O>", { desc = "Jump to prev tags" })
 
+-- insert mode
+keymap.set("i", "<C-u>", "<C-o>u", { desc = "Undo" })
+keymap.set("i", "<C-r>", "<C-o><C-r>", { desc = "Redo" })
+
 -- plugins keymaps
 
 -- NvimTree
