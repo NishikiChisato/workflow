@@ -18,10 +18,14 @@ if [ ! -d $PATH_PLUGINS ]; then
   /usr/bin/mkdir -p $PATH_PLUGINS
 fi
 
+/usr/bin/cp "$PATH/neovim/nvim/init.lua" "$PATH_LITE/init.lua"
+
 /usr/bin/cp "$PATH/neovim/nvim/lua/config/core/init.lua" "$PATH_CORE/init.lua"
 /usr/bin/cp "$PATH/neovim/nvim/lua/config/core/keymaps.lua" "$PATH_CORE/keymaps.lua"
 /usr/bin/cp "$PATH/neovim/nvim/lua/config/core/options.lua" "$PATH_CORE/options.lua"
 /usr/bin/cp "$PATH/neovim/nvim/lua/config/lazy.lua" $PATH_CONFIG
+
+/usr/bin/sed -i "s/, { import = \"config.plugins.lsp\" }//g" "$PATH_CONFIG/lazy.lua"
 
 /usr/bin/cp "$PATH/neovim/nvim/lua/config/plugins/init.lua" "$PATH_PLUGINS/init.lua"
 /usr/bin/cp "$PATH/neovim/nvim/lua/config/plugins/alpha.lua" "$PATH_PLUGINS/alpha.lua"
