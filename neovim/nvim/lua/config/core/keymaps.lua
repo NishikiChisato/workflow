@@ -30,9 +30,19 @@ keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Go up" })
 -- tabs
 keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close current tab" })
+keymap.set("n", "<leader>tb", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
+
+-- tab movement
 keymap.set("n", "<leader>tn", "gt", { desc = "Goto next tab" })
 keymap.set("n", "<leader>tp", "gT", { desc = "Goto previous tab" })
-keymap.set("n", "<leader>tb", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap.set("n", "<A-l>", "gt", { desc = "Goto next tab" })
+keymap.set("n", "<A-h>", "gT", { desc = "Goto previous tab" })
+
+-- move tabs
+keymap.set("n", "<C-t><C-l>", ":tabm +1<CR>", { desc = "Move tab to next" })
+keymap.set("n", "<C-t><C-h>", ":tabm -1<CR>", { desc = "Move tab to previous" })
+keymap.set("n", "<C-t>0", ":tabm 0<CR>", { desc = "Move tab to first" })
+keymap.set("n", "<C-t>$", ":tabm $<CR>", { desc = "Move tab to last" })
 
 -- terminal
 function OpenVerticalTabWithTerminal()
@@ -55,6 +65,21 @@ keymap.set("n", "[[", "<C-O>", { desc = "Jump to prev tags" })
 -- insert mode
 keymap.set("i", "<C-u>", "<C-o>u", { desc = "Undo" })
 keymap.set("i", "<C-r>", "<C-o><C-r>", { desc = "Redo" })
+
+keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
+keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
+keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
+keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
+
+-- some scenario optimized
+-- Pasting a deleted or copied line directly after pressing o to create a new line in Neovim
+keymap.set("i", "<C-p>", "<ESC>p'[i", { desc = "Quick paste in insert mode" })
+--[=[
+--  <ESC> -> back to normal mode
+--  p -> paste the last yanked or deleted line
+--  '[ -> move the cursor to the beginning of pasted line
+--  i -> beck to insert mode
+--]=]
 
 -- plugins keymaps
 
