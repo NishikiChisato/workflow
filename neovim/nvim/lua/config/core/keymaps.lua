@@ -39,10 +39,10 @@ keymap.set("n", "<A-l>", "gt", { desc = "Goto next tab" })
 keymap.set("n", "<A-h>", "gT", { desc = "Goto previous tab" })
 
 -- move tabs
-keymap.set("n", "<C-t><C-l>", ":tabm +1<CR>", { desc = "Move tab to next" })
-keymap.set("n", "<C-t><C-h>", ":tabm -1<CR>", { desc = "Move tab to previous" })
-keymap.set("n", "<C-t>0", ":tabm 0<CR>", { desc = "Move tab to first" })
-keymap.set("n", "<C-t>$", ":tabm $<CR>", { desc = "Move tab to last" })
+keymap.set("n", "<A-S-h>", ":tabm -1<CR>", { desc = "Move tab to left" })
+keymap.set("n", "<A-S-l>", ":tabm +1<CR>", { desc = "Move tab to right" })
+keymap.set("n", "<A-S-0>", ":tabm 0<CR>", { desc = "Move tab to first" })
+keymap.set("n", "<A-S-$>", ":tabm $<CR>", { desc = "Move tab to last" })
 
 -- terminal
 function OpenVerticalTabWithTerminal()
