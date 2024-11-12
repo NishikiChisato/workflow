@@ -99,9 +99,49 @@ cp -r ./tmux ~/.config/
 
 Instruction for installing zsh is [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
 
-Run the following command to install ohmyzsh
+Run the following command to install [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+## Nvim-diff
+
+### Svn
+
+If you are using [svn](https://subversion.apache.org/) and want to enter diff mode of nvim when executing `svn diff`, we can:
+
+```sh
+# copy the script to /bin
+cp ./diff/svn-diff /bin
+
+# grants execute mode to it
+chmod +x /bin/svn-diff
+
+# edit you global subversion configure file
+nvim ~/.subversion/config
+```
+
+Let the key `diff-cmd` to `svn-diff`:
+
+```conf
+diff-cmd = svn-diff
+```
+
+### Git
+
+Note that you can consult this [answer](https://stackoverflow.com/questions/7669963/how-can-i-get-a-side-by-side-diff-when-i-do-git-diff) for more information.
+
+```sh
+# copy the script to /bin
+cp ./diff/nvim-diff /bin
+
+# grants execute mode to it
+chmod +x /bin/nvim-diff
+```
+
+Using `git config` to let git knows this external script:
+
+```sh
+git config --global diff.external /bin/nvim-diff
+```
