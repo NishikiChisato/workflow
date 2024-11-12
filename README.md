@@ -91,6 +91,14 @@ sudo apt-get install fd-find
 
 ### Usage
 
+Installing [tpm](https://github.com/tmux-plugins/tpm) as packages manager:
+
+```sh
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+```
+
+Note that we install it into `~/.config/`, instead default directory `~/.tmux/`.
+
 ```sh
 cp -r ./tmux ~/.config/
 ```
@@ -122,7 +130,7 @@ chmod +x /bin/svn-diff
 nvim ~/.subversion/config
 ```
 
-Let the key `diff-cmd` to `svn-diff`:
+Set the value of key `diff-cmd` to `svn-diff`:
 
 ```conf
 diff-cmd = svn-diff
