@@ -103,6 +103,18 @@ Note that we install it into `~/.config/`, instead default directory `~/.tmux/`.
 cp -r ./tmux ~/.config/
 ```
 
+### Prerequisite
+
+In order to yank or paste content in tmux, we musl install xclip first:
+
+```sh
+sudo apt-get install xclip
+```
+
+Now that, in tmux, we can press `prefix + [` to enter copy mode, and press `y` to yank something you want. To paste in tmux, press `prefix + ]`. 
+
+The content we choosed in copy mode will be automatically copy to system clipboard, so we can directly press `Ctrl + v` to paste it in another plases.
+
 ## Zsh
 
 Instruction for installing zsh is [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
