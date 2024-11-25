@@ -163,5 +163,9 @@ chmod +x /bin/nvim-diff
 Using `git config` to let git knows this external script:
 
 ```sh
+# by default, when executes `gid diff`, it will enter interactive mode(e.g. it will automatically enter less)
+# if you want to print contents from `git diff` to terminal and don't enter interactive mode, you can execute `git --no-pager diff`
+# so, we must set pager of git to cat, let `git diff` just print its content to terminal
+git config --global pager.diff "cat"
 git config --global diff.external /bin/nvim-diff
 ```
