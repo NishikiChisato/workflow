@@ -89,13 +89,18 @@ keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggl
 keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
 keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
+-- Define a function to get the word under the cursor and start Telescope tags search
+function Telescope_tags_with_current_word()
+    local current_word = vim.fn.expand('<cword>')  -- Get the word under the cursor
+    require('telescope.builtin').tags({ default_text = current_word })
+end
 
 -- telescope for fuzzy search
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Fuzzy find files in cwd" })
 keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Find string in cwd" })
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
-keymap.set("n", "<leader>ft", "<cmd>Telescope tags<CR>", { desc = "Find tags" })
+keymap.set("n", "<leader>ft", "<cmd>lua Telescope_tags_with_current_word()<CR>", { desc = "Find tags" })
 
 -- auto-session for worksapce save and restore
 keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save current session(workspace)" })
