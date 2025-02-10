@@ -67,6 +67,18 @@ return {
       end,
     })
 
+    vim.api.nvim_create_autocmd('InsertCharPre', {
+      pattern = '*',
+      callback = function()
+        local char = vim.v.char
+        if char == '(' or char == ',' then
+          vim.schedule(function()
+            vim.lsp.buf.signature_help()
+          end)
+        end
+      end,
+    })
+
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
