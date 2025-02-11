@@ -73,7 +73,19 @@ return {
         local char = vim.v.char
         if char == '(' or char == ',' then
           vim.schedule(function()
-            vim.lsp.buf.signature_help()
+             -- Get current cursor position and line content
+            local cursor = vim.api.nvim_win_get_cursor(0)
+            local row, col = cursor[1], cursor[2]
+            local line = vim.api.nvim_get_current_line()
+            -- Text before cursor (including newly inserted character)
+            local text_before = line:sub(1, col)
+            -- Count parentheses to determine if we're inside function call
+            local open_parens = select(2, text_before:gsub('%(', ''))
+            local close_parens = select(2, text_before:gsub('%)', ''))
+            -- Show signature help only when inside parentheses
+            if open_parens > close_parens then
+              vim.lsp.buf.signature_help()
+            end
           end)
         end
       end,
