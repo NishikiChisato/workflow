@@ -28,6 +28,9 @@ return {
         "lua_ls",         -- Lua
         "marksman",       -- Markdown
         "gopls",          -- Go
+        "grammarly-languageserver", -- Markdown
+        "bash-language-server",     -- Bash
+        "pylyzer",        -- python
       },
     })
   end,

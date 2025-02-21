@@ -126,6 +126,19 @@ return {
           },
         })
       end,
+      ["bashls"] = function()
+        lspconfig["bashls"].setup({
+          cmd = {"bash-language-server", "start"},
+          filetypes = {"sh", "bash", "zsh", "make"},
+        })
+      end,
+      ["clangd"] = function()
+        lspconfig["clangd"].setup({
+          cmd = {"clangd",
+                "--background-index",
+                "--clang-tidy"}
+        })
+      end
     })
   end,
 }
