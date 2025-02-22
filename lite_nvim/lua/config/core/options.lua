@@ -11,7 +11,8 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line to the new line when start a new one
 
-opt.wrap = false -- line wrap
+opt.wrap = true -- line wrap
+opt.breakindent = true -- indent wrapped line
 
 -- search
 opt.ignorecase = true -- ignore case when searching
