@@ -14,6 +14,8 @@ opt.autoindent = true -- copy indent from current line to the new line when star
 opt.wrap = true -- line wrap
 opt.breakindent = true -- indent wrapped line
 
+opt.jumpoptions = "stack" -- jump to the last position when opening a file
+
 -- search
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you includ mixed case in search, assumes you want case-sensitive
