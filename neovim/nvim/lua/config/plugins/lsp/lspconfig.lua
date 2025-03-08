@@ -18,6 +18,36 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    vim.api.nvim_create_autocmd('InsertCharPre', {
+      pattern = '*',
+      callback = function()
+        local char = vim.v.char
+        local filetype = vim.bo.filetype
+        if filetype == "markdown" or filetype == "make" or filetype == "sh" then
+          return
+        end
+        if char == '(' or char == ',' or char == ' ' then
+          vim.schedule(function()
+            -- Get current cursor position and line content
+            local cursor = vim.api.nvim_win_get_cursor(0)
+            local row, col = cursor[1], cursor[2]
+            local line = vim.api.nvim_get_current_line()
+            -- Text before cursor (including newly inserted character)
+            local text_before = line:sub(1, col)
+            
+            -- Count parentheses to determine if we're inside function call
+            local open_parens = select(2, text_before:gsub('%(', ''))
+            local close_parens = select(2, text_before:gsub('%)', ''))
+            
+            -- Show signature help only when inside parentheses
+            if open_parens > close_parens then
+              vim.lsp.buf.signature_help()
+            end
+          end)
+        end
+      end,
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -67,30 +97,6 @@ return {
       end,
     })
 
-    vim.api.nvim_create_autocmd('InsertCharPre', {
-      pattern = '*',
-      callback = function()
-        local char = vim.v.char
-        if char == '(' or char == ',' then
-          vim.schedule(function()
-             -- Get current cursor position and line content
-            local cursor = vim.api.nvim_win_get_cursor(0)
-            local row, col = cursor[1], cursor[2]
-            local line = vim.api.nvim_get_current_line()
-            -- Text before cursor (including newly inserted character)
-            local text_before = line:sub(1, col)
-            -- Count parentheses to determine if we're inside function call
-            local open_parens = select(2, text_before:gsub('%(', ''))
-            local close_parens = select(2, text_before:gsub('%)', ''))
-            -- Show signature help only when inside parentheses
-            if open_parens > close_parens then
-              vim.lsp.buf.signature_help()
-            end
-          end)
-        end
-      end,
-    })
-
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -128,15 +134,17 @@ return {
       end,
       ["bashls"] = function()
         lspconfig["bashls"].setup({
-          cmd = {"bash-language-server", "start"},
-          filetypes = {"sh", "bash", "zsh", "make"},
+          cmd = { "bash-language-server", "start" },
+          filetypes = { "sh", "bash", "zsh", "make" },
         })
       end,
       ["clangd"] = function()
         lspconfig["clangd"].setup({
-          cmd = {"clangd",
-                "--background-index",
-                "--clang-tidy"}
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+          }
         })
       end
     })
