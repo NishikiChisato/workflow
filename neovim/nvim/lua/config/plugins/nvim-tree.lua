@@ -1,8 +1,4 @@
 return {
-  --[=[
-  this plugin is used to provide file tree as a sidebar
-  --]=]
-
   "nvim-tree/nvim-tree.lua",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()

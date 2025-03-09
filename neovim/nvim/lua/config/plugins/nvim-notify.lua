@@ -1,4 +1,3 @@
-local notify
 local client_notifs = {}
 
 local function get_notif_data(client_id, token)
@@ -23,7 +22,7 @@ local function update_spinner(client_id, token)
    local new_spinner = (notif_data.spinner + 1) % #spinner_frames
    notif_data.spinner = new_spinner
 
-   notif_data.notification = notify(nil, nil, {
+   notif_data.notification = vim.notify(nil, nil, {
      hide_from_history = true,
      icon = spinner_frames[new_spinner],
      replace = notif_data.notification,
@@ -45,11 +44,13 @@ end
 
 return {
   "rcarriga/nvim-notify",
+  event = "VeryLazy",
   config = function()
-    notify = require("notify").setup({
+    local notify = require("notify")
+    notify.setup({
       merge_duplicates = true,
       background_colour = "NotifyBackground",
-      fps = 120,
+      fps = 30,
       icons = {
         DEBUG = "",
         ERROR = "",
@@ -58,16 +59,17 @@ return {
         WARN = ""
       },
       level = 2,
-      minimum_width = 50,
+      minimum_width = 25,
       render = "default",
       stages = "fade_in_slide_out",
       time_formats = {
         notification = "%T",
         notification_history = "%FT%T"
       },
-      timeout = 5000,
+      timeout = 50,
       top_down = true
     })
+
     vim.notify = notify
 
     vim.lsp.handlers["$/progress"] = function(_, result, ctx)
@@ -83,10 +85,7 @@ return {
 
       if val.kind == "begin" then
         local message = format_message(val.message, val.percentage)
-        if not notify then
-          return
-        end
-        notif_data.notification = notify(message, "info", {
+        notif_data.notification = vim.notify(message, "info", {
           title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
           icon = spinner_frames[1],
           timeout = false,
@@ -96,10 +95,7 @@ return {
        notif_data.spinner = 1
        update_spinner(client_id, result.token)
       elseif val.kind == "report" and notif_data then
-        if not notify then
-          return
-        end
-       notif_data.notification = notify(format_message(val.message, val.percentage), "info", {
+       notif_data.notification = vim.notify(format_message(val.message, val.percentage), "info", {
          replace = notif_data.notification,
          hide_from_history = false,
        })
@@ -107,7 +103,7 @@ return {
         if not notify then
           return
         end
-        notif_data.notification = notify(val.message and format_message(val.message) or "Complete", "info", {
+        notif_data.notification = vim.notify(val.message and format_message(val.message) or "Complete", "info", {
           icon = "",
           replace = notif_data.notification,
           timeout = 3000,

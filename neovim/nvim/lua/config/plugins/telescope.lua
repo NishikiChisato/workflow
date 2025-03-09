@@ -150,6 +150,9 @@ return {
     end
     keymap.set("n", "<leader>fg", "<CMD>lua Project_Files()<CR>")
 
+    telescope.load_extension("notify")
+    keymap.set("n", "<leader>fl", function() telescope.extensions.notify.notify() end, { desc = "Viewing history" })
+
     ------------------------------------------------------ keymaps ----------------------------------------------------------
 
 
