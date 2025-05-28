@@ -9,14 +9,14 @@ return {
   keys = {
     { -- lazy style key map
       -- Choose your own keys, this works for me
-      "<leader>si",
+      "<leader>fi",
       "<cmd>Telescope hierarchy incoming_calls<cr>",
-      desc = "LSP: [S]earch [I]ncoming Calls",
+      desc = "LSP: [F]ind [I]ncoming Calls",
     },
     {
-      "<leader>so",
+      "<leader>fo",
       "<cmd>Telescope hierarchy outgoing_calls<cr>",
-      desc = "LSP: [S]earch [O]utgoing Calls",
+      desc = "LSP: [F]ind [O]utgoing Calls",
     },
   },
   opts = {
@@ -44,7 +44,6 @@ return {
     -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
     -- configs for us. We won't use data, as everything is in it's own namespace (telescope
     -- defaults, as well as each extension).
-    print(require "util.debugger".pretty(opts, "opts"))
     require("telescope").setup(opts)
     require("telescope").load_extension("hierarchy")
   end,
